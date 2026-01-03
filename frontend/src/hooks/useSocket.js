@@ -7,7 +7,8 @@ const useSocket = (tenantId) => {
     useEffect(() => {
         if (!tenantId) return;
 
-        const newSocket = io(`http://${window.location.hostname}:5000`);
+        const socketUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || `http://${window.location.hostname}:5000`;
+        const newSocket = io(socketUrl);
         setSocket(newSocket);
 
         newSocket.emit('joinTenant', tenantId);
