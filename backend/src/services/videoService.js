@@ -1,11 +1,13 @@
 const ffmpeg = require('fluent-ffmpeg');
 
-// Set absolute paths for ffmpeg and ffprobe (WinGet installation)
-const ffmpegPath = 'C:\\Users\\nsric\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.exe';
-const ffprobePath = 'C:\\Users\\nsric\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffprobe.exe';
-
-ffmpeg.setFfmpegPath(ffmpegPath);
-ffmpeg.setFfprobePath(ffprobePath);
+// Only set custom paths on Windows (for local development)
+if (process.platform === 'win32') {
+    const ffmpegPath = 'C:\\Users\\nsric\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.exe';
+    const ffprobePath = 'C:\\Users\\nsric\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffprobe.exe';
+    ffmpeg.setFfmpegPath(ffmpegPath);
+    ffmpeg.setFfprobePath(ffprobePath);
+}
+// On Linux (Render), ffmpeg is installed via apt-get and available in PATH
 
 const Groq = require('groq-sdk');
 const fs = require('fs');
