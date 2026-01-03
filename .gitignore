@@ -1,7 +1,14 @@
+# Dependencies
 node_modules/
+
+# Environment variables
 .env
-uploads/*
-!uploads/.gitkeep
+
+# Uploads directory (contains large video files)
+uploads/
+
+# Agent folder
+.agent/.gitkeep
 dist/
 .DS_Store
 *.log
